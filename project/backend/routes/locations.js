@@ -2,12 +2,8 @@ const express = require("express");
 const crudrepository = require("../database/crudrepository");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json("Toimii");
-});
-
 // GET all users
-router.get("/api/users", async (req, res) => {
+router.get("/api/questions", async (req, res) => {
   try {
     let results = await crudrepository.findAll();
     res.send(results);
