@@ -1,53 +1,39 @@
-// express connections
+require("dotenv").config();
+// import the express module
 const express = require("express");
-const app = express();
+const cors = require("cors");
+const router = require("./routes/locations");
+const { pool } = require("./database/crudrepository");
+// defines the port
 const port = process.env.PORT || 3000;
+// creates an instance of express app
+const app = express();
 
-// database connection
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database(":memory:");
+app.use(cors());
 
-// this is for finding right place automatically
-const path = require("path");
-app.use(express.static(path.join(__dirname, "public")));
+// muuttaa js olioksi ja tallentaa sen req.body
+app.use(express.json());
+app.use("/", router);
 
-db.serialize(() => {
-  db.run(`CREATE TABLE IF NOT EXISTS locations
-  (id INTEGER PRIMARY KEY, name TEXT, lat REAL, lng REAL)`);
 
-  // Insert data — the ? placeholders prevent SQL injection
-  db.run("INSERT INTO locations (name, lat, lng) VALUES (?, ?, ?)", [
-    "Helsinki",
-    60.1699,
-    24.9384,
-  ]);
+const setupGracefulShutdown = (server) => {
+  const shutdown = (signal) => {
+    // telling if server was closed by dev or some other app
+    console.info(`\nReceived ${signal} signal. Shutting down...`);
 
-  db.run("INSERT INTO locations (name, lat, lng) VALUES (?, ?, ?)", [
-    "Tampere",
-    61.4978,
-    23.761,
-  ]);
+    pool.end(() => {
+      server.close();
+    });
+  };
+
+  process.on("SIGTERM", () => shutdown("SIGTERM")); // system manager, some other application
+  process.on("SIGINT", () => shutdown("SIGINT")); // ctrl-c
+};
+
+// Start the server and listen on the specified port
+// doesnt make connection automatically
+const server = app.listen(port, () => {
+  console.info(`Example app listening on port ${port}`);
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello world!");
-});
-
-app.get("/api/locations", (req, res) => {
-  db.all("SELECT * FROM locations", [], (err, rows) => {
-    if (err) {
-      throw err;
-    }
-    res.json(rows);
-  });
-});
-
-process.on("SIGINT", () => {
-  db.close();
-  console.log("Shut down with SIGINT (CTRL + C)");
-  process.exit(0);
-});
-
-app.listen(port, () => {
-  console.log(`App listening on port: ${port}`);
-});
+setupGracefulShutdown(server);
