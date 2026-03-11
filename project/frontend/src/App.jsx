@@ -2,21 +2,21 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [locations, setLocations] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchLocations = async () => {
-      const response = await fetch("/api/locations");
+      const response = await fetch("/api/users");
       const data = await response.json();
-      setLocations(data);
+      setUsers(data);
     };
     fetchLocations();
   }, []);
 
   return (
     <ul>
-      {locations.map((loc) => (
-        <li key={loc.id}>{loc.name}</li>
+      {users.map((loc) => (
+        <li key={loc.id}>{loc.username}, {loc.points}</li>
       ))}
     </ul>
   );
