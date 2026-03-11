@@ -15,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 app.use("/", router);
 
-
 const setupGracefulShutdown = (server) => {
   const shutdown = (signal) => {
     // telling if server was closed by dev or some other app

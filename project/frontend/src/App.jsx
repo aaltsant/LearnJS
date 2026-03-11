@@ -2,23 +2,32 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [users, setUsers] = useState([]);
+  const [Questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    const fetchLocations = async () => {
-      const response = await fetch("/api/users");
+    const fetchQuestions = async () => {
+      const response = await fetch("/api/questions");
       const data = await response.json();
-      setUsers(data);
+      setQuestions(data);
     };
-    fetchLocations();
+    fetchQuestions();
   }, []);
 
   return (
-    <ul>
-      {users.map((loc) => (
-        <li key={loc.id}>{loc.username}, {loc.points}</li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {Questions.map((que) => (
+          <li key={que.id}>
+            <strong>{que.question_text}</strong>
+            <div style={{ marginTop: '10px' }}>
+              <button>{que.option_1}</button>
+              <button>{que.option_2}</button>
+              <button>{que.option_3}</button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
