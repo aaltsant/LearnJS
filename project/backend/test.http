@@ -1,5 +1,20 @@
-GET http://localhost:3000/
-
-###
-
+### Get request for all questions
 GET http://localhost:3000/api/questions
+
+### Get question by ID
+GET http://localhost:3000/api/questions/1
+
+### Delete question by ID
+DELETE http://localhost:3000/api/questions/8
+
+### Create location
+POST http://localhost:3000/api/questions
+Content-Type: application/json
+
+{
+  "question_text": "Miten tarkistat taulukon pituuden?",
+  "option_1": ".size()",
+  "option_2": ".length()",
+  "option_3": ".count()",
+  "correct_answer": ".length()"
+}

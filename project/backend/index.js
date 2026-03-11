@@ -2,7 +2,7 @@ require("dotenv").config();
 // import the express module
 const express = require("express");
 const cors = require("cors");
-const router = require("./routes/locations");
+const router = require("./routes/questions");
 const { pool } = require("./database/crudrepository");
 // defines the port
 const port = process.env.PORT || 3000;
