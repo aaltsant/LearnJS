@@ -1,5 +1,6 @@
-GET http://localhost:3000/
-
-###
-
+### Get request for all questions
 GET http://localhost:3000/api/questions
+
+
+### Get question by ID
+GET http://localhost:3000/api/questions/1

@@ -14,7 +14,23 @@ function findAll() {
   });
 }
 
+function findByID(id) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "SELECT * FROM questions WHERE id = ?",
+      [id],
+      (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results);
+      },
+    );
+  });
+}
+
 module.exports = {
   findAll: findAll,
+  findByID: findByID,
   pool: pool,
 };
