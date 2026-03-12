@@ -1,31 +1,32 @@
 import { useEffect, useState } from 'react'
+import styles from '../styles/questions.module.css';
 
 function Questions() {
-  const [Questions, setQuestions] = useState([]);
+  const [question, setQuestion] = useState(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch("/api/questions");
+      const response = await fetch("/api/questions/rand");
       const data = await response.json();
-      setQuestions(data);
+      setQuestion(data);
     };
     fetchQuestions();
   }, []);
 
+  if (!question) {
+    return <div>Loading question...</div>;
+  }
+
   return (
     <div>
-      <ul>
-        {Questions.map((que) => (
-          <li key={que.id}>
-            <strong>{que.question_text}</strong>
-            <div style={{ marginTop: '10px' }}>
-              <button>{que.option_1}</button>
-              <button>{que.option_2}</button>
-              <button>{que.option_3}</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {question.map((question) =>
+      <div>
+        <h2>{question.question_text}</h2>
+        <button className={styles.button}>{question.option_1}</button>
+        <button className={styles.button}>{question.option_2}</button>
+        <button className={styles.button}>{question.option_3}</button>
+      </div>
+      )}
     </div>
   );
 }
