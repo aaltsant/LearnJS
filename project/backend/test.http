@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/questions
 
 ### Get question by ID
-GET http://localhost:3000/api/questions/11
+GET http://localhost:3000/api/questions/1
 
 ### Delete question by ID
 DELETE http://localhost:3000/api/questions/3
@@ -26,3 +26,6 @@ Content-Type: application/json
 {
   "option_3": ".count()"
 }
+
+### Get random question
+GET http://localhost:3000/api/questions/rand

@@ -2,6 +2,17 @@ const express = require("express");
 const crudrepository = require("../database/crudrepository");
 const router = express.Router();
 
+// GET random question
+router.get("/api/questions/rand", async (req, res) => {
+  try {
+    let results = await crudrepository.findRandom();
+
+    res.status(200).json(results);
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // GET all questions
 router.get("/api/questions", async (req, res) => {
   try {
@@ -124,7 +135,6 @@ router.patch("/api/questions/:myId", async (req, res) => {
     "correct_answer",
   ];
 
-
   if (!allowedColumns.includes(column)) {
     res.status(404).json({
       error: `Column ${column} does not exist.`,
@@ -148,6 +158,37 @@ router.patch("/api/questions/:myId", async (req, res) => {
     let updatedLine = await crudrepository.findByID(id);
 
     res.status(200).json(updatedLine);
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.post("/api/questions", async (req, res) => {
+  const question_text = req.body.question_text;
+  const option_1 = req.body.option_1;
+  const option_2 = req.body.option_2;
+  const option_3 = req.body.option_3;
+  const correct_answer = req.body.correct_answer;
+
+  try {
+    let results = await crudrepository.addQuestion(
+      question_text,
+      option_1,
+      option_2,
+      option_3,
+      correct_answer,
+    );
+
+    const newQuestion = {
+      id: results.insertId,
+      question_text: question_text,
+      option_1: option_1,
+      option_2: option_2,
+      option_3: option_3,
+      correct_answer: correct_answer,
+    };
+
+    res.status(201).json(newQuestion);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
   }
