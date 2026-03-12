@@ -78,11 +78,27 @@ function updateByID(id, column, newValue) {
   });
 }
 
+function findRandom() {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "SELECT * FROM questions ORDER BY RAND() LIMIT 1",
+      [],
+      (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results);
+      }
+    );
+  });
+}
+
 module.exports = {
   findAll: findAll,
   findByID: findByID,
   deleteByID: deleteByID,
   addQuestion: addQuestion,
   updateByID: updateByID,
+  findRandom: findRandom,
   pool: pool,
 };
