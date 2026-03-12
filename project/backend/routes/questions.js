@@ -57,7 +57,7 @@ router.delete("/api/questions/:myId", async (req, res) => {
   try {
     let results = await crudrepository.deleteByID(id);
 
-    // if there is no affectedrows, nothing is deleted
+    // if there is no affectedRows, nothing is deleted
     if (results.affectedRows == 0) {
       res.status(404).json({
         error: `Location with ID ${id} does not exist.`,
@@ -99,6 +99,55 @@ router.post("/api/questions", async (req, res) => {
     };
 
     res.status(201).json(newLocation);
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// POST new location
+router.patch("/api/questions/:myId", async (req, res) => {
+  const id = req.params.myId;
+
+  // I use use object.keys() to get the column key.
+  const column = Object.keys(req.body)[0];
+  // the column is saved as "column" so we can use it
+  // to get the columns value aka newValue.
+  const newValue = req.body[column];
+
+  // this checks that the column is right
+  // and also disables possibility of sql injection.
+  const allowedColumns = [
+    "question_text",
+    "option_1",
+    "option_2",
+    "option_3",
+    "correct_answer",
+  ];
+
+
+  if (!allowedColumns.includes(column)) {
+    res.status(404).json({
+      error: `Column ${column} does not exist.`,
+      suggestion: "Ensure the column is correct.",
+    });
+    return;
+  }
+
+  try {
+    let results = await crudrepository.updateByID(id, column, newValue);
+
+    // if there is no affectedRows, nothing is deleted
+    if (results.affectedRows == 0) {
+      res.status(404).json({
+        error: `Location with ID ${id} does not exist.`,
+        suggestion: "Ensure the location ID is correct.",
+      });
+      return;
+    }
+
+    let updatedLine = await crudrepository.findByID(id);
+
+    res.status(200).json(updatedLine);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
   }

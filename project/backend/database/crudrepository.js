@@ -42,11 +42,32 @@ function deleteByID(id) {
 }
 
 // Post new question
-function addQuestion(question_text, option_1, option_2, option_3, correct_answer) {
+function addQuestion(
+  question_text,
+  option_1,
+  option_2,
+  option_3,
+  correct_answer,
+) {
   return new Promise((resolve, reject) => {
     pool.query(
       "INSERT INTO questions (question_text, option_1, option_2, option_3, correct_answer) VALUES (?, ?, ?, ?, ?)",
       [question_text, option_1, option_2, option_3, correct_answer],
+      (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results);
+      },
+    );
+  });
+}
+
+function updateByID(id, column, newValue) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `UPDATE questions SET ${column} = ? WHERE id = ?`,
+      [newValue, id],
       (error, results) => {
         if (error) {
           return reject(error);
@@ -62,5 +83,6 @@ module.exports = {
   findByID: findByID,
   deleteByID: deleteByID,
   addQuestion: addQuestion,
+  updateByID: updateByID,
   pool: pool,
 };

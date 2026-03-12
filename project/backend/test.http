@@ -2,10 +2,10 @@
 GET http://localhost:3000/api/questions
 
 ### Get question by ID
-GET http://localhost:3000/api/questions/1
+GET http://localhost:3000/api/questions/11
 
 ### Delete question by ID
-DELETE http://localhost:3000/api/questions/8
+DELETE http://localhost:3000/api/questions/3
 
 ### Create location
 POST http://localhost:3000/api/questions
@@ -17,4 +17,12 @@ Content-Type: application/json
   "option_2": ".length()",
   "option_3": ".count()",
   "correct_answer": ".length()"
+}
+
+### Partial update (PATCH)
+PATCH http://localhost:3000/api/questions/11
+Content-Type: application/json
+
+{
+  "option_3": ".count()"
 }
