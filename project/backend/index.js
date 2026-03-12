@@ -1,7 +1,6 @@
 require("dotenv").config();
 // import the express module
 const express = require("express");
-const cors = require("cors");
 const router = require("./routes/questions");
 const { pool } = require("./database/crudrepository");
 // defines the port
@@ -9,10 +8,11 @@ const port = process.env.PORT || 3000;
 // creates an instance of express app
 const app = express();
 
-app.use(cors());
-
-// muuttaa js olioksi ja tallentaa sen req.body
+// This is much needed middleware, without it req.body wont work
+// It takes the json string and turns it into object and
+// places it into req.body variable.
 app.use(express.json());
+
 app.use("/", router);
 
 const setupGracefulShutdown = (server) => {
