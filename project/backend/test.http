@@ -5,18 +5,22 @@ GET http://localhost:3000/api/questions
 GET http://localhost:3000/api/questions/1
 
 ### Delete question by ID
-DELETE http://localhost:3000/api/questions/3
+DELETE http://localhost:3000/api/questions/12
 
-### Create location
+### Create new question
 POST http://localhost:3000/api/questions
 Content-Type: application/json
 
 {
-  "question_text": "Miten tarkistat taulukon pituuden?",
+  "question": "Miten tarkistat taulukon pituuden?",
   "option_1": ".size()",
   "option_2": ".length()",
   "option_3": ".count()",
-  "correct_answer": ".length()"
+  "correct_answer": ".length()",
+  "code_snippet": null,
+  "category": "Teoria",
+  "feedback_correct": "Oikein! .length() on JavaScriptin valmis metodi, jolla näkee pituuden.",
+  "feedback_incorrect": "Väärin. .length() on oikea vaihtoehto."
 }
 
 ### Partial update (PATCH)

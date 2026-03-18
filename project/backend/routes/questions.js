@@ -85,37 +85,49 @@ router.delete("/api/questions/:myId", async (req, res) => {
 
 // POST new location
 router.post("/api/questions", async (req, res) => {
-  const question_text = req.body.question_text;
+  const question = req.body.question;
   const option_1 = req.body.option_1;
   const option_2 = req.body.option_2;
   const option_3 = req.body.option_3;
   const correct_answer = req.body.correct_answer;
+  const code_snippet = req.body.code_snippet;
+  const category = req.body.category;
+  const feedback_correct = req.body.feedback_correct;
+  const feedback_incorrect = req.body.feedback_incorrect;
 
   try {
     let results = await crudrepository.addQuestion(
-      question_text,
+      question,
       option_1,
       option_2,
       option_3,
       correct_answer,
+      code_snippet,
+      category,
+      feedback_correct,
+      feedback_incorrect,
     );
 
-    const newLocation = {
+    const newQuestion = {
       id: results.insertId,
-      question_text: question_text,
+      question: question,
       option_1: option_1,
       option_2: option_2,
       option_3: option_3,
       correct_answer: correct_answer,
+      code_snippet: code_snippet,
+      category: category,
+      feedback_correct: feedback_correct,
+      feedback_incorrect: feedback_incorrect,
     };
 
-    res.status(201).json(newLocation);
+    res.status(201).json(newQuestion);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// POST new location
+// PATCH
 router.patch("/api/questions/:myId", async (req, res) => {
   const id = req.params.myId;
 
@@ -133,6 +145,10 @@ router.patch("/api/questions/:myId", async (req, res) => {
     "option_2",
     "option_3",
     "correct_answer",
+    "code_snippet",
+    "category",
+    "feedback_correct",
+    "feedback_incorrect",
   ];
 
   if (!allowedColumns.includes(column)) {
@@ -158,37 +174,6 @@ router.patch("/api/questions/:myId", async (req, res) => {
     let updatedLine = await crudrepository.findByID(id);
 
     res.status(200).json(updatedLine);
-  } catch (err) {
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-router.post("/api/questions", async (req, res) => {
-  const question_text = req.body.question_text;
-  const option_1 = req.body.option_1;
-  const option_2 = req.body.option_2;
-  const option_3 = req.body.option_3;
-  const correct_answer = req.body.correct_answer;
-
-  try {
-    let results = await crudrepository.addQuestion(
-      question_text,
-      option_1,
-      option_2,
-      option_3,
-      correct_answer,
-    );
-
-    const newQuestion = {
-      id: results.insertId,
-      question_text: question_text,
-      option_1: option_1,
-      option_2: option_2,
-      option_3: option_3,
-      correct_answer: correct_answer,
-    };
-
-    res.status(201).json(newQuestion);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
   }

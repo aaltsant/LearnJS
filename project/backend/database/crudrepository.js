@@ -43,16 +43,30 @@ function deleteByID(id) {
 
 // Post new question
 function addQuestion(
-  question_text,
+  question,
   option_1,
   option_2,
   option_3,
   correct_answer,
+  code_snippet,
+  category,
+  feedback_correct,
+  feedback_incorrect,
 ) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "INSERT INTO questions (question_text, option_1, option_2, option_3, correct_answer) VALUES (?, ?, ?, ?, ?)",
-      [question_text, option_1, option_2, option_3, correct_answer],
+      "INSERT INTO questions (question, option_1, option_2, option_3, correct_answer, code_snippet, category, feedback_correct, feedback_incorrect) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [
+        question,
+        option_1,
+        option_2,
+        option_3,
+        correct_answer,
+        code_snippet,
+        category,
+        feedback_correct,
+        feedback_incorrect,
+      ],
       (error, results) => {
         if (error) {
           return reject(error);
@@ -88,7 +102,7 @@ function findRandom() {
           return reject(error);
         }
         resolve(results);
-      }
+      },
     );
   });
 }
