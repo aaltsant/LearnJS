@@ -1,12 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
 import './App.css'
-import Questions from './learnjs/questions';
+import MainPage from './learnjs/MainPage';
 
 function App() {
 
   return (
     <BrowserRouter>
-      <Questions />
+      <MainPage />
     </BrowserRouter>
   );
 }
