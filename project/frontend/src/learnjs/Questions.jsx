@@ -13,15 +13,24 @@ function Questions() {
     fetchQuestions();
   }, []);
 
+  const nextQuestion = async () => {
+    const response = await fetch("/api/questions/rand");
+    const data = await response.json();
+    setQuestion(data);
+  };
+
   return (
     <div>
       {question.map((question) =>
       <div>
         <h2>{question.question}</h2>
           <p>{question.code_snippet}</p>
-          <button className={styles.button}>{question.option_1}</button>
-          <button className={styles.button}>{question.option_2}</button>
-          <button className={styles.button}>{question.option_3}</button>
+          <div>
+            <button className={styles.button}>{question.option_1}</button>
+            <button className={styles.button}>{question.option_2}</button>
+            <button className={styles.button}>{question.option_3}</button>
+          </div>
+          <button className={styles.nextButton} onClick={nextQuestion}>Next question</button>
       </div>
       )}
     </div>
