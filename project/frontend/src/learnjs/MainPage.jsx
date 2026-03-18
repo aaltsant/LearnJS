@@ -7,16 +7,16 @@ import NavBar from './NavBar';
 function MainPage() {
 
     return (
-        <>
-            <NavBar />
-            <div>
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/training" element={<Questions />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </div>
-        </>
+      <>
+        <NavBar />
+          <div>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/training" element={<Questions />} />
+              <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </>
     );
 }
 
