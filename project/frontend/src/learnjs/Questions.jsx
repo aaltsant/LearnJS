@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/questions.module.css';
 
 function Questions() {
-  const [question, setQuestion] = useState(null);
+  const [question, setQuestion] = useState([]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -13,18 +13,15 @@ function Questions() {
     fetchQuestions();
   }, []);
 
-  if (!question) {
-    return <div>Loading question...</div>;
-  }
-
   return (
     <div>
       {question.map((question) =>
       <div>
-        <h2>{question.question_text}</h2>
-        <button className={styles.button}>{question.option_1}</button>
-        <button className={styles.button}>{question.option_2}</button>
-        <button className={styles.button}>{question.option_3}</button>
+        <h2>{question.question}</h2>
+          <p>{question.code_snippet}</p>
+          <button className={styles.button}>{question.option_1}</button>
+          <button className={styles.button}>{question.option_2}</button>
+          <button className={styles.button}>{question.option_3}</button>
       </div>
       )}
     </div>
