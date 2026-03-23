@@ -95,7 +95,7 @@ function updateByID(id, column, newValue) {
 function findRandom() {
   return new Promise((resolve, reject) => {
     pool.query(
-      "SELECT * FROM questions ORDER BY RAND() LIMIT 1",
+      "SELECT * FROM questions ORDER BY RAND()",
       [],
       (error, results) => {
         if (error) {
