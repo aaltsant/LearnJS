@@ -4,6 +4,7 @@ import styles from '../styles/questions.module.css';
 function Questions() {
   const [question, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -17,11 +18,20 @@ function Questions() {
   const currentQuestion = question[currentIndex];
 
   const nextQuestion = () => {
+    setFeedback("");
     setCurrentIndex(prevIndex => prevIndex + 1);
   };
 
   if (!currentQuestion) {
     return <div>Loading...</div>;
+  }
+
+  const checkAnswer = (answer) => {
+    if (answer === currentQuestion.correct_answer) {
+      setFeedback(currentQuestion.feedback_correct);
+    } else {
+      setFeedback(currentQuestion.feedback_incorrect);
+    }
   }
 
   return (
@@ -30,9 +40,19 @@ function Questions() {
         <h2>{currentQuestion.question}</h2>
           <p>{currentQuestion.code_snippet}</p>
           <div>
-            <button className={styles.button}>{currentQuestion.option_1}</button>
-            <button className={styles.button}>{currentQuestion.option_2}</button>
-            <button className={styles.button}>{currentQuestion.option_3}</button>
+            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_1)}>
+              {currentQuestion.option_1}
+            </button>
+
+            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_2)}>
+              {currentQuestion.option_2}
+            </button>
+
+            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_3)}>
+              {currentQuestion.option_3}
+            </button>
+
+            <p>{feedback}</p>
           </div>
           <button className={styles.nextButton} onClick={nextQuestion}>
             Next question
