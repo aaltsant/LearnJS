@@ -38,7 +38,9 @@ function Questions() {
     <div>
       <div>
         <h2>{currentQuestion.question}</h2>
-          <p>{currentQuestion.code_snippet}</p>
+          <pre>
+            <code>{currentQuestion.code_snippet}</code>
+          </pre>
           <div>
             <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_1)}>
               {currentQuestion.option_1}
