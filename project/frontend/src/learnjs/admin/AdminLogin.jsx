@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Admin from "./Admin";
-import styles from '../styles/admin.module.css';
+import styles from '../../styles/admin.module.css';
+import AdminChoosing from "./AdminChoosing";
 
 function AdminLogin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,7 +15,7 @@ function AdminLogin() {
   }
 
   if (isAuthenticated) {
-    return <Admin />
+    return <AdminChoosing />
   }
 
   return (

@@ -3,23 +3,23 @@ import Questions from './Questions';
 import HomePage from './HomePage';
 import NotFound from './NotFound';
 import NavBar from './NavBar';
-import AdminLogin from './AdminLogin';
+import AdminLogin from './admin/AdminLogin';
 
 function MainPage() {
 
-    return (
-      <>
-        <NavBar />
-          <div>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/training" element={<Questions />} />
-              <Route path="/admin" element={<AdminLogin />} />
-              <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </>
-    );
+  return (
+    <>
+      <NavBar />
+      <div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/training" element={<Questions />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </>
+  );
 }
 
 export default MainPage
