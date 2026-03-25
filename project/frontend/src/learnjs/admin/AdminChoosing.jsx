@@ -1,5 +1,7 @@
-import AdminTraining from "./AdminTraining";
 import { useState } from "react";
+import AdminTest from "./AdminTest";
+import AdminTraining from "./AdminTraining";
+import AdminUsers from "./AdminUsers";
 
 function AdminChoosing() {
   const [view, setView] = useState("menu");
@@ -8,13 +10,20 @@ function AdminChoosing() {
     return <AdminTraining />
   }
 
+  if (view === "test") {
+    return <AdminTest />
+  }
+
+  if (view === "users") {
+    return <AdminUsers />
+  }
 
   return (
     <>
       <div>
         <button onClick={() => setView("training")}>Change training questions</button>
-        <button>Change test questions</button>
-        <button>Change users</button>
+        <button onClick={() => setView("test")}>Change test questions</button>
+        <button onClick={() => setView("users")}>Change users</button>
       </div>
     </>
   );
