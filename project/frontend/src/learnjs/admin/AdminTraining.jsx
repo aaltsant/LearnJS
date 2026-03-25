@@ -17,7 +17,7 @@ function AdminTraining() {
 
   return (
     <>
-      <h1>Training questions CRUD -operations</h1>
+      <h1>Questions table CRUD -operations</h1>
       <div>
         <button>Create</button>
         <button onClick={fetchQuestions}>Read</button>
