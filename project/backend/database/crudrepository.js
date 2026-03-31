@@ -49,13 +49,12 @@ function addQuestion(
   option_3,
   correct_answer,
   code_snippet,
-  category,
   feedback_correct,
   feedback_incorrect,
 ) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "INSERT INTO questions (question, option_1, option_2, option_3, correct_answer, code_snippet, category, feedback_correct, feedback_incorrect) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO questions (question, option_1, option_2, option_3, correct_answer, code_snippet, feedback_correct, feedback_incorrect) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [
         question,
         option_1,
@@ -63,7 +62,6 @@ function addQuestion(
         option_3,
         correct_answer,
         code_snippet,
-        category,
         feedback_correct,
         feedback_incorrect,
       ],
