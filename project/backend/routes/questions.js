@@ -91,7 +91,6 @@ router.post("/api/questions", async (req, res) => {
   const option_3 = req.body.option_3;
   const correct_answer = req.body.correct_answer;
   const code_snippet = req.body.code_snippet;
-  const category = req.body.category;
   const feedback_correct = req.body.feedback_correct;
   const feedback_incorrect = req.body.feedback_incorrect;
 
@@ -103,7 +102,6 @@ router.post("/api/questions", async (req, res) => {
       option_3,
       correct_answer,
       code_snippet,
-      category,
       feedback_correct,
       feedback_incorrect,
     );
@@ -116,7 +114,6 @@ router.post("/api/questions", async (req, res) => {
       option_3: option_3,
       correct_answer: correct_answer,
       code_snippet: code_snippet,
-      category: category,
       feedback_correct: feedback_correct,
       feedback_incorrect: feedback_incorrect,
     };
@@ -146,7 +143,6 @@ router.patch("/api/questions/:myId", async (req, res) => {
     "option_3",
     "correct_answer",
     "code_snippet",
-    "category",
     "feedback_correct",
     "feedback_incorrect",
   ];
