@@ -14,7 +14,7 @@ function AdminTraining() {
   const [option2, setOption2] = useState("");
   const [option3, setOption3] = useState("");
   const [answer, setAnswer] = useState("");
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState();
   const [correct, setCorrect] = useState("");
   const [incorrect, setIncorrect] = useState("");
 
@@ -33,9 +33,42 @@ function AdminTraining() {
   }
 
   if (view === "create") {
+    const handleCreate = async (e) => {
+      e.preventDefault();
+
+      const response = await fetch(`api/questions`, {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({
+          question: question,
+          option_1: option1,
+          option_2: option2,
+          option_3: option3,
+          correct_answer: answer,
+          code_snippet: code,
+          feedback_correct: correct,
+          feedback_incorrect: incorrect
+        })
+      });
+
+      if (response.status === 201) {
+        alert(`New question created successfully`);
+        setQuestion("");
+        setOption1("");
+        setOption2("");
+        setOption3("");
+        setAnswer("");
+        setCode();
+        setCorrect("");
+        setIncorrect("");
+      } else {
+        alert(`Something went wrong!`);
+      }
+    }
+
     return (
       <>
-        <form style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px', padding: '15px' }}>
+        <form onSubmit={handleCreate} style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px', padding: '15px' }}>
           <h2>Create new question</h2>
           <input placeholder="question" value={question} onChange={(e) => setQuestion(e.target.value)} />
           <input placeholder="option_1" value={option1} onChange={(e) => setOption1(e.target.value)} />
@@ -69,6 +102,7 @@ function AdminTraining() {
 
       if (!correctFields.includes(field)) {
         alert("Field you want to update dont exist!");
+        return;
       }
 
       if (!newField) {
@@ -76,23 +110,28 @@ function AdminTraining() {
       }
 
       const response = await fetch(`api/questions/${id}`, {
+        // kertoo mikä metodi
         method: 'PATCH',
+        // tämä kertoo, että tuleva sisältö on jsonia
         headers: { 'Content-type': 'application/json' },
+        // Tämä muuttaa js-olion merkkijonoksi
+        // se täytyy muuttaa merkkijonoksi, jotta bäkkäri osaa lukea sitä!
         body: JSON.stringify({
           [field]: newField
         })
       });
 
       if (response.status === 200) {
-        alert(`Question with ${id} was updated successfully!`);
+        alert(`Question with id: ${id} was updated successfully!`);
         setId("");
         setField("");
         setNewField("");
       } else if (response.status === 404) {
-        alert(`Question with ${id} was not found!`);
+        alert(`Question with id: ${id} was not found!`);
+      } else {
+        alert("Something went wrong!");
       }
     }
-
 
     return (
       <>
@@ -130,10 +169,10 @@ function AdminTraining() {
       // tämä tarkistaa, että onnistuiko poistaminen vai ei
       // ja ilmoittaa fronttiin siitä. setId() nollaa id:n staten
       if (response.status === 204) {
-        alert(`Question with ${id} was deleted successfully!`);
+        alert(`Question with id: ${id} was deleted successfully!`);
         setId("");
       } else if (response.status === 404) {
-        alert(`Question with ${id} was not found!`);
+        alert(`Question with id: ${id} was not found!`);
       }
     }
 

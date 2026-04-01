@@ -137,7 +137,7 @@ router.patch("/api/questions/:myId", async (req, res) => {
   // this checks that the column is right
   // and also disables possibility of sql injection.
   const allowedColumns = [
-    "question_text",
+    "question",
     "option_1",
     "option_2",
     "option_3",
