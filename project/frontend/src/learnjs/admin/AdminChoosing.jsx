@@ -21,6 +21,7 @@ function AdminChoosing() {
   return (
     <>
       <div>
+        <h1>Which table you want to change?</h1>
         <button onClick={() => setView("training")}>Change training questions</button>
         <button onClick={() => setView("test")}>Change test questions</button>
         <button onClick={() => setView("users")}>Change users</button>
