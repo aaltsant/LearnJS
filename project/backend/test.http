@@ -2,7 +2,7 @@
 GET http://localhost:3000/api/questions
 
 ### Get question by ID
-GET http://localhost:3000/api/questions/1
+GET http://localhost:3000/api/questions/4
 
 ### Delete question by ID
 DELETE http://localhost:3000/api/questions/1
@@ -32,3 +32,6 @@ Content-Type: application/json
 
 ### Get random question
 GET http://localhost:3000/api/questions/rand
+
+### Get request for all testquestions
+GET http://localhost:3000/api/test
