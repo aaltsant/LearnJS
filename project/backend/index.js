@@ -2,6 +2,7 @@ require("dotenv").config();
 // import the express module
 const express = require("express");
 const router = require("./routes/questions");
+const testrouter = require("./routes/test");
 const { pool } = require("./database/crudrepository");
 // defines the port
 const port = process.env.PORT || 3000;
@@ -13,7 +14,15 @@ const app = express();
 // places it into req.body variable.
 app.use(express.json());
 
-app.use("/", router);
+// Old way
+// app.use("/", router)
+// this doenst work anymore as we need more than one router
+
+// now when the routers automatically use /api/table_name
+// you gotta just call /:myId in routes
+// (finding just one question with id)
+app.use("/api/questions", router);
+app.use("/api/test", testrouter);
 
 const setupGracefulShutdown = (server) => {
   const shutdown = (signal) => {
