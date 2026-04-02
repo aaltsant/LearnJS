@@ -3,7 +3,7 @@ const crudrepository = require("../database/crudrepository");
 const router = express.Router();
 
 // GET random question
-router.get("/api/questions/rand", async (req, res) => {
+router.get("/rand", async (req, res) => {
   try {
     let results = await crudrepository.findRandom();
 
@@ -14,9 +14,9 @@ router.get("/api/questions/rand", async (req, res) => {
 });
 
 // GET all questions
-router.get("/api/questions", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    let results = await crudrepository.findAll();
+    let results = await crudrepository.findAll("questions");
     res.send(results);
   } catch (err) {
     // it goes here if db connection breaks
@@ -26,7 +26,7 @@ router.get("/api/questions", async (req, res) => {
 });
 
 // GET question by ID
-router.get("/api/questions/:myId", async (req, res) => {
+router.get("/:myId", async (req, res) => {
   const id = Number(req.params.myId);
 
   if (isNaN(id)) {
@@ -37,7 +37,7 @@ router.get("/api/questions/:myId", async (req, res) => {
   }
 
   try {
-    let results = await crudrepository.findByID(id);
+    let results = await crudrepository.findByID("questions", id);
 
     if (results.length == 0) {
       res.status(400).json({
@@ -84,7 +84,7 @@ router.delete("/api/questions/:myId", async (req, res) => {
 });
 
 // POST new location
-router.post("/api/questions", async (req, res) => {
+router.post("/", async (req, res) => {
   const question = req.body.question;
   const option_1 = req.body.option_1;
   const option_2 = req.body.option_2;
@@ -125,7 +125,7 @@ router.post("/api/questions", async (req, res) => {
 });
 
 // PATCH
-router.patch("/api/questions/:myId", async (req, res) => {
+router.patch("/:myId", async (req, res) => {
   const id = req.params.myId;
 
   // I use use object.keys() to get the column key.

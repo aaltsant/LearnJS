@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Questions from './Questions';
+import Test from './Test';
 import HomePage from './HomePage';
 import NotFound from './NotFound';
 import NavBar from './NavBar';
@@ -14,6 +15,7 @@ function MainPage() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/training" element={<Questions />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

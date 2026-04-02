@@ -3,9 +3,9 @@ const config = require("./config");
 
 const pool = mysql.createPool(config);
 
-function findAll() {
+function findAll(table) {
   return new Promise((resolve, reject) => {
-    pool.query("SELECT * FROM questions", (error, results) => {
+    pool.query("SELECT * FROM ??", [table], (error, results) => {
       if (error) {
         return reject(error);
       }
@@ -14,11 +14,11 @@ function findAll() {
   });
 }
 
-function findByID(id) {
+function findByID(table, id) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "SELECT * FROM questions WHERE id = ?",
-      [id],
+      "SELECT * FROM ?? WHERE id = ?",
+      [table, id],
       (error, results) => {
         if (error) {
           return reject(error);
