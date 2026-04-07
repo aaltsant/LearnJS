@@ -5,7 +5,7 @@ const router = express.Router();
 // GET random question
 router.get("/rand", async (req, res) => {
   try {
-    let results = await crudrepository.findRandom();
+    let results = await crudrepository.findRandom("questions");
 
     res.status(200).json(results);
   } catch (err) {
@@ -55,7 +55,7 @@ router.get("/:myId", async (req, res) => {
 });
 
 // DELETE question by ID
-router.delete("/api/questions/:myId", async (req, res) => {
+router.delete("/:myId", async (req, res) => {
   const id = Number(req.params.myId);
 
   if (isNaN(id)) {
@@ -66,7 +66,7 @@ router.delete("/api/questions/:myId", async (req, res) => {
   }
 
   try {
-    let results = await crudrepository.deleteByID(id);
+    let results = await crudrepository.deleteByID("questions", id);
 
     // if there is no affectedRows, nothing is deleted
     if (results.affectedRows == 0) {
@@ -96,6 +96,7 @@ router.post("/", async (req, res) => {
 
   try {
     let results = await crudrepository.addQuestion(
+      "questions",
       question,
       option_1,
       option_2,
@@ -156,9 +157,9 @@ router.patch("/:myId", async (req, res) => {
   }
 
   try {
-    let results = await crudrepository.updateByID(id, column, newValue);
+    let results = await crudrepository.updateByID("questions", id, column, newValue);
 
-    // if there is no affectedRows, nothing is deleted
+    // if there is no affectedRows, nothing is updated
     if (results.affectedRows == 0) {
       res.status(404).json({
         error: `Location with ID ${id} does not exist.`,
@@ -167,7 +168,7 @@ router.patch("/:myId", async (req, res) => {
       return;
     }
 
-    let updatedLine = await crudrepository.findByID(id);
+    let updatedLine = await crudrepository.findByID("questions", id);
 
     res.status(200).json(updatedLine);
   } catch (err) {
