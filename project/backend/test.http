@@ -5,7 +5,7 @@ GET http://localhost:3000/api/questions
 GET http://localhost:3000/api/questions/4
 
 ### Delete question by ID
-DELETE http://localhost:3000/api/questions/1
+DELETE http://localhost:3000/api/questions/4
 
 ### Create new question
 POST http://localhost:3000/api/questions
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ### Partial update (PATCH)
-PATCH http://localhost:3000/api/questions/11
+PATCH http://localhost:3000/api/questions/17
 Content-Type: application/json
 
 {
@@ -33,5 +33,43 @@ Content-Type: application/json
 ### Get random question
 GET http://localhost:3000/api/questions/rand
 
+
+
+
+
+
+
 ### Get request for all testquestions
 GET http://localhost:3000/api/test
+
+### Get testquestion by ID
+GET http://localhost:3000/api/test/1
+
+### Delete testquestion by ID
+DELETE http://localhost:3000/api/test/5
+
+### Create new question
+POST http://localhost:3000/api/test
+Content-Type: application/json
+
+{
+  "question": "Miten tarkistat taulukon pituuden?",
+  "option_1": ".size()",
+  "option_2": ".length()",
+  "option_3": ".count()",
+  "correct_answer": ".length()",
+  "code_snippet": null,
+  "feedback_correct": "Oikein! .length() on JavaScriptin valmis metodi, jolla näkee pituuden.",
+  "feedback_incorrect": "Väärin. .length() on oikea vaihtoehto."
+}
+
+### Partial update (PATCH)
+PATCH http://localhost:3000/api/test/6
+Content-Type: application/json
+
+{
+  "option_3": ".count()"
+}
+
+### Get random question
+GET http://localhost:3000/api/test/rand

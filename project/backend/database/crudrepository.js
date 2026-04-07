@@ -30,9 +30,9 @@ function findByID(table, id) {
 }
 
 // Delete location by ID
-function deleteByID(id) {
+function deleteByID(table, id) {
   return new Promise((resolve, reject) => {
-    pool.query("DELETE FROM questions WHERE id = ?", [id], (error, results) => {
+    pool.query("DELETE FROM ?? WHERE id = ?", [table, id], (error, results) => {
       if (error) {
         return reject(error);
       }
@@ -43,6 +43,7 @@ function deleteByID(id) {
 
 // Post new question
 function addQuestion(
+  table,
   question,
   option_1,
   option_2,
@@ -54,8 +55,9 @@ function addQuestion(
 ) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "INSERT INTO questions (question, option_1, option_2, option_3, correct_answer, code_snippet, feedback_correct, feedback_incorrect) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO ?? (question, option_1, option_2, option_3, correct_answer, code_snippet, feedback_correct, feedback_incorrect) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
       [
+        table,
         question,
         option_1,
         option_2,
@@ -75,11 +77,11 @@ function addQuestion(
   });
 }
 
-function updateByID(id, column, newValue) {
+function updateByID(table, id, column, newValue) {
   return new Promise((resolve, reject) => {
     pool.query(
-      `UPDATE questions SET ${column} = ? WHERE id = ?`,
-      [newValue, id],
+      `UPDATE ?? SET ${column} = ? WHERE id = ?`,
+      [table, newValue, id],
       (error, results) => {
         if (error) {
           return reject(error);
@@ -90,11 +92,11 @@ function updateByID(id, column, newValue) {
   });
 }
 
-function findRandom() {
+function findRandom(table) {
   return new Promise((resolve, reject) => {
     pool.query(
-      "SELECT * FROM questions ORDER BY RAND()",
-      [],
+      "SELECT * FROM ?? ORDER BY RAND()",
+      [table],
       (error, results) => {
         if (error) {
           return reject(error);
