@@ -5,7 +5,6 @@ function Test() {
   const [question, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [feedback, setFeedback] = useState("");
-  // const [points, setPoints] = useState(0);
 
   useEffect(() => {
     const fetchQuestions = async () => {
