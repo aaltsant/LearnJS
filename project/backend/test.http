@@ -73,3 +73,35 @@ Content-Type: application/json
 
 ### Get random question
 GET http://localhost:3000/api/test/rand
+
+
+
+
+
+
+### Get request for all users
+GET http://localhost:3000/api/users
+
+### Get user by id
+GET http://localhost:3000/api/users/1
+
+### Delete user by ID
+DELETE http://localhost:3000/api/users/6
+
+### Create new user
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+  "username": "Testi",
+  "score": "5050",
+  "max_streak": "7"
+}
+
+### Partial update (PATCH)
+PATCH http://localhost:3000/api/users/6
+Content-Type: application/json
+
+{
+  "score": "650"
+}

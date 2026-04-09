@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const config = require("./config");
+const { use } = require("react");
 
 const pool = mysql.createPool(config);
 
@@ -77,6 +78,23 @@ function addQuestion(
   });
 }
 
+// Post new user
+function addUser(username, score, max_streak) {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "INSERT INTO users (username, score, max_streak) VALUES (?, ?, ?)",
+      [username, score, max_streak],
+      (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results);
+      },
+    );
+  });
+}
+
+// PATCH request
 function updateByID(table, id, column, newValue) {
   return new Promise((resolve, reject) => {
     pool.query(
@@ -92,6 +110,7 @@ function updateByID(table, id, column, newValue) {
   });
 }
 
+// GET all in random order
 function findRandom(table) {
   return new Promise((resolve, reject) => {
     pool.query(
@@ -114,5 +133,6 @@ module.exports = {
   addQuestion: addQuestion,
   updateByID: updateByID,
   findRandom: findRandom,
+  addUser: addUser,
   pool: pool,
 };

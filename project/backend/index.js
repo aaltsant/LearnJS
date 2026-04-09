@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const router = require("./routes/questions");
 const testrouter = require("./routes/test");
+const userrouter = require("./routes/users");
 const { pool } = require("./database/crudrepository");
 // defines the port
 const port = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.use(express.json());
 // (finding just one question with id)
 app.use("/api/questions", router);
 app.use("/api/test", testrouter);
+app.use("/api/users", userrouter);
 
 const setupGracefulShutdown = (server) => {
   const shutdown = (signal) => {
