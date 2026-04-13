@@ -16,7 +16,7 @@ function StartTest() {
       <h2>What is your name?</h2>
       <p>It's saved for leaderboard!</p>
       <form>
-        <input placeholder='Your name/username...' value={username} onChange={(e) => setUsername(e.target.value)}/>
+        <input placeholder='Your name...' value={username} onChange={(e) => setUsername(e.target.value)}/>
         <button onClick={() => setView("game")}>Start!</button>
       </form>
     </div>
