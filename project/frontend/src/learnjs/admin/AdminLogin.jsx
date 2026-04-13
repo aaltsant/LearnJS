@@ -7,7 +7,7 @@ function AdminLogin() {
   const [password, setPassword] = useState('');
 
   const LogIn = () => {
-    if (password === "toimiiko") {
+    if (password === "salkkis") {
       setIsAuthenticated(true);
     } else {
       alert("Wrong password!");
