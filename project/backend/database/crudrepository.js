@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 const config = require("./config");
-const { use } = require("react");
 
 const pool = mysql.createPool(config);
 
@@ -110,12 +109,28 @@ function updateByID(table, id, column, newValue) {
   });
 }
 
-// GET all in random order
-function findRandom(table) {
+// GET all from questions in random order
+function findRandom() {
   return new Promise((resolve, reject) => {
     pool.query(
-      "SELECT * FROM ?? ORDER BY RAND()",
-      [table],
+      "SELECT * FROM questions ORDER BY RAND()",
+      [],
+      (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results);
+      },
+    );
+  });
+}
+
+// GET from test in random order
+function findRandom() {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "SELECT * FROM test ORDER BY RAND() LIMIT 5",
+      [],
       (error, results) => {
         if (error) {
           return reject(error);

@@ -46,7 +46,7 @@ GET http://localhost:3000/api/test
 GET http://localhost:3000/api/test/1
 
 ### Delete testquestion by ID
-DELETE http://localhost:3000/api/test/5
+DELETE http://localhost:3000/api/test/6
 
 ### Create new question
 POST http://localhost:3000/api/test

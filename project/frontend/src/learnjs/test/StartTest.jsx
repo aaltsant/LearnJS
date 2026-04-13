@@ -6,12 +6,12 @@ function StartTest() {
   const [username, setUsername] = useState("");
 
   if (view === "game") {
-    return <Test />
+    return <Test username={username} />
   }
 
   return (
     <div>
-      <h1>Welcome to test page. Are you ready to test your skills?</h1>
+      <h1>Are you ready to test your skills?</h1>
 
       <h2>What is your name?</h2>
       <p>It's saved for leaderboard!</p>

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Questions from './Questions';
-import StartTest from './StartTest';
+import StartTest from './test/StartTest';
 import HomePage from './HomePage';
 import NotFound from './NotFound';
 import NavBar from './NavBar';

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import styles from '../styles/questions.module.css';
+import styles from '../../styles/questions.module.css';
 
-function Test() {
+function Test({ username }) {
   const [question, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [feedback, setFeedback] = useState("");
 
+  // this fetches the test questions from the backend
+  // this saves an array of questions to setQuestion state
   useEffect(() => {
     const fetchQuestions = async () => {
       const response = await fetch("/api/test/rand");
@@ -15,8 +17,11 @@ function Test() {
     fetchQuestions();
   }, []);
 
+  // this is for getting next question quicker.
+  // also without this it would be hard to get questions by id
+  // because ID is auto_incremented and there might be
+  // "holes" in the questions
   const currentQuestion = question[currentIndex];
-
   const nextQuestion = () => {
     setFeedback("");
     setCurrentIndex(prevIndex => prevIndex + 1);
@@ -37,6 +42,7 @@ function Test() {
   return (
     <div>
       <div>
+        <p>{username}</p>
         <h2>{currentQuestion.question}</h2>
           <pre>
             <code>{currentQuestion.code_snippet}</code>
