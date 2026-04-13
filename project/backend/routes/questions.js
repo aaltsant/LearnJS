@@ -5,7 +5,7 @@ const router = express.Router();
 // GET random question
 router.get("/rand", async (req, res) => {
   try {
-    let results = await crudrepository.findRandom("questions");
+    let results = await crudrepository.findRandom();
 
     res.status(200).json(results);
   } catch (err) {
