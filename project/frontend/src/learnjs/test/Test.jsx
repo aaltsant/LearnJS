@@ -9,6 +9,7 @@ function Test({ username }) {
 
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
+  const [maxstreak, setMaxstreak] = useState(0);
 
   const navigate = useNavigate();
 
@@ -49,6 +50,10 @@ function Test({ username }) {
     }
   }
 
+  if (streak > maxstreak) {
+    setMaxstreak(streak);
+  }
+
   // method saveresults is for posting users who took the test
   // to the users table
   const saveResults = async () => {
@@ -58,7 +63,7 @@ function Test({ username }) {
       body: JSON.stringify({
         username: username,
         score: score,
-        max_streak: streak
+        max_streak: maxstreak
       })
     });
 
@@ -83,7 +88,7 @@ function Test({ username }) {
         <h2>Test Over!</h2>
         <p>Well done, {username}!</p>
         <p>Your final score: {score}</p>
-        <p>Your streak: {streak}</p>
+        <p>Your highest streak: {maxstreak}</p>
         <button onClick={saveResults}>Ready</button>
       </div>
     );
@@ -97,8 +102,12 @@ function Test({ username }) {
   return (
     <div>
       <div>
-        <p>{username}</p><p>{currentIndex + 1}/{question.length}</p>
-        <p>{score}</p>
+        <container>
+          <p>Username: {username}</p>
+          <p>question: {currentIndex + 1}/{question.length}</p>
+          <p>Score: {score}</p> <p>Streak: {streak}</p>
+        </container>
+        
         <h2>{currentQuestion.question}</h2>
           <pre>
             <code>{currentQuestion.code_snippet}</code>
