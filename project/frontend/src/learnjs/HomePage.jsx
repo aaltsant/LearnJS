@@ -5,7 +5,7 @@ function HomePage() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch("/api/users");
+      const response = await fetch("/api/users/top");
       const data = await response.json();
       setUsers(data);
     };

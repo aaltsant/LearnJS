@@ -141,6 +141,22 @@ function findRandom() {
   });
 }
 
+// GET leaderboard top 10
+function findLeaderboard() {
+  return new Promise((resolve, reject) => {
+    pool.query(
+      "SELECT * FROM users ORDER BY score DESC LIMIT 10",
+      [],
+      (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results);
+      },
+    );
+  });
+}
+
 module.exports = {
   findAll: findAll,
   findByID: findByID,
@@ -149,5 +165,6 @@ module.exports = {
   updateByID: updateByID,
   findRandom: findRandom,
   addUser: addUser,
+  findLeaderboard: findLeaderboard,
   pool: pool,
 };
