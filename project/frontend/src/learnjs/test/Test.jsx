@@ -11,6 +11,8 @@ function Test({ username }) {
   const [streak, setStreak] = useState(0);
   const [maxstreak, setMaxstreak] = useState(0);
 
+  const [hasAnswered, setHasAnswered] = useState(false);
+
   const navigate = useNavigate();
 
   // this fetches the test questions from the database
@@ -30,6 +32,7 @@ function Test({ username }) {
   // "holes" in the questions
   const nextQuestion = () => {
     setFeedback("");
+    setHasAnswered(false);
     setCurrentIndex(prevIndex => prevIndex + 1);
   };
 
@@ -37,6 +40,14 @@ function Test({ username }) {
   // and if it is the score rises by 100
   // and if not score will decrease
   const checkAnswer = (answer) => {
+    // if user has answered questions
+    // return immediately
+    if (hasAnswered) {
+      return;
+    }
+
+    setHasAnswered(true);
+
     if (answer === currentQuestion.correct_answer) {
       setFeedback(currentQuestion.feedback_correct);
       const pointsEarned = 100 + (streak * 25);
@@ -107,27 +118,30 @@ function Test({ username }) {
           <p>question: {currentIndex + 1}/{question.length}</p>
           <p>Score: {score}</p> <p>Streak: {streak}</p>
         </container>
-        
+
         <h2>{currentQuestion.question}</h2>
           <pre>
             <code>{currentQuestion.code_snippet}</code>
           </pre>
           <div>
-            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_1)}>
+            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_1)}
+              disabled={hasAnswered}>
               {currentQuestion.option_1}
             </button>
 
-            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_2)}>
+            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_2)}
+              disabled={hasAnswered}>
               {currentQuestion.option_2}
             </button>
 
-            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_3)}>
+            <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_3)}
+              disabled={hasAnswered}>
               {currentQuestion.option_3}
             </button>
 
             <p>{feedback}</p>
           </div>
-          <button className={styles.nextButton} onClick={nextQuestion}>
+          <button className={styles.nextButton} onClick={nextQuestion} disabled={!hasAnswered}>
             Next question
           </button>
       </div>
