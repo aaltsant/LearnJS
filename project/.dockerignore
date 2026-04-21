@@ -1,7 +1,0 @@
-node_modules
-.git
-.vite-cache
-*.db
-*.sqlite
-.env
-.DS_Store
