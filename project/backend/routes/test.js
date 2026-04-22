@@ -2,7 +2,13 @@ const express = require("express");
 const crudrepository = require("../database/crudrepository");
 const testrouter = express.Router();
 
-// GET random question
+/**
+ * GET /api/test/rand
+ * Fetches test questions in random order
+ * Made for testpage in frontend
+ * This method is identical to questions.js /rand
+ * But it works cause i made each table its own routers
+ */
 testrouter.get("/rand", async (req, res) => {
   try {
     let results = await crudrepository.findRandom();
@@ -13,7 +19,11 @@ testrouter.get("/rand", async (req, res) => {
   }
 });
 
-// GET all testquestions
+/**
+ * GET /api/test
+ * Fetches all questions from test table
+ * Made for admin to see all questions if something needs change
+ */
 testrouter.get("/", async (req, res) => {
   try {
     let results = await crudrepository.findAll("test");
@@ -25,7 +35,10 @@ testrouter.get("/", async (req, res) => {
   }
 });
 
-// GET question by ID
+/**
+ * GET /api/test/id
+ * Fetches question from test table by id
+ */
 testrouter.get("/:myId", async (req, res) => {
   const id = Number(req.params.myId);
 
@@ -54,7 +67,11 @@ testrouter.get("/:myId", async (req, res) => {
   }
 });
 
-// DELETE testquestion by ID
+/**
+ * DELETE /api/test/id
+ * Deletes question from test table by id
+ * Made for admin to delete broken or dumb questions
+ */
 testrouter.delete("/:myId", async (req, res) => {
   const id = Number(req.params.myId);
 
@@ -83,7 +100,11 @@ testrouter.delete("/:myId", async (req, res) => {
   }
 });
 
-// POST new location
+/**
+ * POST /api/test
+ * Posts new question to test table
+ * Could be easily used from admin page
+ */
 testrouter.post("/", async (req, res) => {
   const question = req.body.question;
   const option_1 = req.body.option_1;
@@ -125,7 +146,11 @@ testrouter.post("/", async (req, res) => {
   }
 });
 
-// PATCH
+/**
+ * PATCH /api/test/id
+ * Updates singular line of question in test table
+ * Made for fixing typos and other possible problems
+ */
 testrouter.patch("/:myId", async (req, res) => {
   const id = req.params.myId;
 
