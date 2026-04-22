@@ -2,33 +2,44 @@ const express = require("express");
 const crudrepository = require("../database/crudrepository");
 const router = express.Router();
 
-// GET random question
+/**
+ * GET /api/questions/rand
+ * calls findRandom() method from crudrepository to fetch questions in random order
+ */
 router.get("/rand", async (req, res) => {
   try {
     let results = await crudrepository.findRandom();
-
     res.status(200).json(results);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// GET all questions
+/**
+ * GET /api/questions
+ * fetches all questions from questions table
+ */
 router.get("/", async (req, res) => {
   try {
     let results = await crudrepository.findAll("questions");
-    res.send(results);
+    res.status(200).send(results);
   } catch (err) {
     // it goes here if db connection breaks
-    // or there is syntax error in SQL asking
+    // or there is syntax error in SQL query
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// GET question by ID
+/**
+ * GET /api/questions/id
+ * fetches question from table by id
+ */
 router.get("/:myId", async (req, res) => {
+  // req.params gets data as a string usually so we change
+  // it to number for validation and database query
   const id = Number(req.params.myId);
 
+  // checks is the id is proper number
   if (isNaN(id)) {
     res.status(400).json({
       error: "Invalid ID! ID Should be positive integer.",
@@ -54,8 +65,13 @@ router.get("/:myId", async (req, res) => {
   }
 });
 
-// DELETE question by ID
+/**
+ * DELETE /api/questions/id
+ * deletes question from table by id
+ */
 router.delete("/:myId", async (req, res) => {
+  // req.params gets data as a string usually so we change
+  // it to number for validation and database query
   const id = Number(req.params.myId);
 
   if (isNaN(id)) {
@@ -83,8 +99,13 @@ router.delete("/:myId", async (req, res) => {
   }
 });
 
-// POST new location
+/**
+ * POST /api/questions
+ * Posts new question to table
+ */
 router.post("/", async (req, res) => {
+  // turns req.body objects into variables
+  // so you can call addQuestions() method with those params
   const question = req.body.question;
   const option_1 = req.body.option_1;
   const option_2 = req.body.option_2;
@@ -125,9 +146,12 @@ router.post("/", async (req, res) => {
   }
 });
 
-// PATCH
+/**
+ * PATCH /api/questions/id
+ * updates one column from questions table by id
+ */
 router.patch("/:myId", async (req, res) => {
-  const id = req.params.myId;
+  const id = Number(req.params.myId);
 
   // I use use object.keys() to get the column key.
   const column = Object.keys(req.body)[0];
@@ -157,7 +181,12 @@ router.patch("/:myId", async (req, res) => {
   }
 
   try {
-    let results = await crudrepository.updateByID("questions", id, column, newValue);
+    let results = await crudrepository.updateByID(
+      "questions",
+      id,
+      column,
+      newValue,
+    );
 
     // if there is no affectedRows, nothing is updated
     if (results.affectedRows == 0) {
