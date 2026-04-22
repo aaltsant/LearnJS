@@ -2,7 +2,10 @@ const express = require("express");
 const crudrepository = require("../database/crudrepository");
 const userrouter = express.Router();
 
-// GET all users (READ)
+/**
+ * GET /api/users
+ * Fetches all users from database
+ */
 userrouter.get("/", async (req, res) => {
   try {
     let results = await crudrepository.findAll("users");
@@ -14,7 +17,11 @@ userrouter.get("/", async (req, res) => {
   }
 });
 
-// GET leaderboard
+/**
+ * GET /api/users/top
+ * Fetches top 10 from users table
+ * Made for leaderboard
+ */
 userrouter.get("/top", async (req, res) => {
   try {
     let results = await crudrepository.findLeaderboard();
@@ -26,7 +33,10 @@ userrouter.get("/top", async (req, res) => {
   }
 });
 
-// GET user by ID
+/**
+ * GET /api/users/id
+ * Fetches user by id
+ */
 userrouter.get("/:myId", async (req, res) => {
   const id = Number(req.params.myId);
 
@@ -55,7 +65,11 @@ userrouter.get("/:myId", async (req, res) => {
   }
 });
 
-// DELETE user by ID
+/**
+ * DELETE /api/users/id
+ * Delete users by id
+ * Could be used from admin view if username is provoking etc.
+ */
 userrouter.delete("/:myId", async (req, res) => {
   const id = Number(req.params.myId);
 
@@ -84,7 +98,12 @@ userrouter.delete("/:myId", async (req, res) => {
   }
 });
 
-// POST new user (CREATE)
+/**
+ * POST /api/users
+ * Post new user to user table
+ * Needed for testpage to save name, points and streak after test
+ * Could also be used to admin view if needed
+ */
 userrouter.post("/", async (req, res) => {
   const username = req.body.username;
   const score = req.body.score;
@@ -110,7 +129,11 @@ userrouter.post("/", async (req, res) => {
   }
 });
 
-// PATCH request (UPDATE)
+/**
+ * PATCH /api/users/id
+ * Updates singular line in user
+ * Could be used from admin view for possible changes
+ */
 userrouter.patch("/:myId", async (req, res) => {
   const id = req.params.myId;
 
