@@ -26,6 +26,11 @@ app.use("/api/questions", router);
 app.use("/api/test", testrouter);
 app.use("/api/users", userrouter);
 
+/**
+ * This method is made to see if application was shut down by the user
+ * or some other problem
+ * @param {number} server
+ */
 const setupGracefulShutdown = (server) => {
   const shutdown = (signal) => {
     // telling if server was closed by dev or some other app
