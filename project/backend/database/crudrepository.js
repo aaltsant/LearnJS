@@ -181,7 +181,7 @@ function findRandom() {
 function findRandom() {
   return new Promise((resolve, reject) => {
     pool.query(
-      "SELECT * FROM test ORDER BY RAND() LIMIT 5",
+      "SELECT * FROM test ORDER BY RAND() LIMIT 15",
       [],
       (error, results) => {
         if (error) {
