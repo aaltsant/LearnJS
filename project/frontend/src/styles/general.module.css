@@ -6,11 +6,66 @@
 
 .header2 {
   color: #c3d2e2;
-  font-size: 27px;
+  font-size: 30px;
   padding: 15px;
+}
+
+.header3 {
+  color: #c3d2e2;
+  font-size: 25px;
+  padding: 15px;
+  text-decoration: underline;
 }
 
 .para {
   font-family: serif;
+  font-size: 22px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.modepara {
+  font-family: serif;
   font-size: 18px;
+}
+
+.modecard {
+  flex: 1;
+  min-height: 400px;
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 30px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard {
+  flex: 1;
+  min-height: 400px;
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard p {
+  /* Pienennä tätä lukua (esim. 5px tai jopa 0),
+       jos haluat tiiviimmän listan */
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  /* Varmistetaan vielä keskitys */
+  text-align: center;
+}
+
+.maincontainer {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
 }
