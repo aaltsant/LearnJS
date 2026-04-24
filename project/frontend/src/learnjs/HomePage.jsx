@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 function HomePage() {
   const [users, setUsers] = useState([]);
 
+  /**
+   * fetches top 10 points from users table
+   * aka leaderboard
+   */
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch("/api/users/top");
