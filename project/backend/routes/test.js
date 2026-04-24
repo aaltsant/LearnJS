@@ -6,12 +6,10 @@ const testrouter = express.Router();
  * GET /api/test/rand
  * Fetches test questions in random order
  * Made for testpage in frontend
- * This method is identical to questions.js /rand
- * But it works cause i made each table its own routers
  */
 testrouter.get("/rand", async (req, res) => {
   try {
-    let results = await crudrepository.findRandom();
+    let results = await crudrepository.findTestRandom();
 
     res.status(200).json(results);
   } catch (err) {

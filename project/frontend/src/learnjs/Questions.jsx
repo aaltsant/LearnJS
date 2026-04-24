@@ -49,7 +49,7 @@ function Questions() {
     <div>
       <div>
         <h2>{currentQuestion.question}</h2>
-          <pre style={{ textAlign: 'left', maxWidth: '125px'}}>
+          <pre style={{ textAlign: 'left', margin: '20px auto', width: 'fit-content'}}>
             <code>{currentQuestion.code_snippet}</code>
           </pre>
           <div>
