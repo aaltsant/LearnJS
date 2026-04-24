@@ -8,7 +8,7 @@ const router = express.Router();
  */
 router.get("/rand", async (req, res) => {
   try {
-    let results = await crudrepository.findRandom();
+    let results = await crudrepository.findQueRandom();
     res.status(200).json(results);
   } catch (err) {
     res.status(500).json({ error: "Internal server error" });
