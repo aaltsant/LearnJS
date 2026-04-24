@@ -6,6 +6,10 @@ function Questions() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [feedback, setFeedback] = useState("");
 
+  /**
+   * fetches all questions from question table
+   * and gives them in random order
+   */
   useEffect(() => {
     const fetchQuestions = async () => {
       const response = await fetch("/api/questions/rand");
@@ -17,6 +21,9 @@ function Questions() {
 
   const currentQuestion = question[currentIndex];
 
+  /**
+   * little function for getting next question
+   */
   const nextQuestion = () => {
     setFeedback("");
     setCurrentIndex(prevIndex => prevIndex + 1);
@@ -26,6 +33,10 @@ function Questions() {
     return <div>Loading...</div>;
   }
 
+  /**
+   * Checks if chosen answer is correct or incorrect
+   * @param {string} answer
+   */
   const checkAnswer = (answer) => {
     if (answer === currentQuestion.correct_answer) {
       setFeedback(currentQuestion.feedback_correct);
