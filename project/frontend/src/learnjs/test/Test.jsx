@@ -120,7 +120,7 @@ function Test({ username }) {
         </container>
 
         <h2>{currentQuestion.question}</h2>
-          <pre style={{ textAlign: 'left', margin: '20px auto', width: 'fit-content'}}>
+          <pre style={{ textAlign: 'left', maxWidth: '125px'}}>
             <code>{currentQuestion.code_snippet}</code>
           </pre>
           <div>

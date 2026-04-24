@@ -65,7 +65,7 @@ function Questions() {
               {currentQuestion.option_3}
             </button>
 
-            <p>{feedback}</p>
+            <p className={styles.p}>{feedback}</p>
           </div>
           <button className={styles.nextButton} onClick={nextQuestion}>
             Next question
