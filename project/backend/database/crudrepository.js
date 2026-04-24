@@ -158,7 +158,7 @@ function updateByID(table, id, column, newValue) {
  * and puts them in random order so noone cannot remember the question order
  * @returns Promise
  */
-function findRandom() {
+function findQueRandom() {
   return new Promise((resolve, reject) => {
     pool.query(
       "SELECT * FROM questions ORDER BY RAND()",
@@ -178,7 +178,7 @@ function findRandom() {
  * and puts them in random order so noone cannot remember the question order
  * @returns Promise
  */
-function findRandom() {
+function findTestRandom() {
   return new Promise((resolve, reject) => {
     pool.query(
       "SELECT * FROM test ORDER BY RAND() LIMIT 15",
@@ -218,7 +218,8 @@ module.exports = {
   deleteByID: deleteByID,
   addQuestion: addQuestion,
   updateByID: updateByID,
-  findRandom: findRandom,
+  findQueRandom: findQueRandom,
+  findTestRandom: findTestRandom,
   addUser: addUser,
   findLeaderboard: findLeaderboard,
   pool: pool,
