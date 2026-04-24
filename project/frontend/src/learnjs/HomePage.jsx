@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import styles from '../styles/general.module.css';
+
 
 function HomePage() {
   const [users, setUsers] = useState([]);
@@ -19,8 +21,9 @@ function HomePage() {
 
   return (
     <div>
-      <h1>LearnJS! - JavaScript made fun!</h1>
-      <p>This is fullstack app made as course project.</p>
+      <h1 className={styles.header}>LearnJS! - JavaScript made fun!</h1>
+      <h2 className={styles.header2}>About this project:</h2>
+      <p className={styles.para}>This is fullstack app made as course project.</p>
 
       <h3>Views:</h3>
         <ul>

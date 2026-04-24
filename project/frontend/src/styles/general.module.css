@@ -1,0 +1,16 @@
+.header {
+  font-family: serif;
+  font-size: 55px;
+  text-decoration: underline;
+}
+
+.header2 {
+  color: #c3d2e2;
+  font-size: 27px;
+  padding: 15px;
+}
+
+.para {
+  font-family: serif;
+  font-size: 18px;
+}
