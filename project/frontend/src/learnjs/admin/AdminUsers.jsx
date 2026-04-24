@@ -13,6 +13,9 @@ function AdminUsers() {
   const [score, setScore] = useState("");
   const [streak, setStreak] = useState("");
 
+  /**
+   * fetches all the users from database users table
+   */
   const fetchUsers = async () => {
     const response = await fetch("/api/users");
     const data = await response.json();
@@ -27,7 +30,13 @@ function AdminUsers() {
     return <AdminUsers />
   }
 
+  // if state is changed to "create"
   if (view === "create") {
+
+    /**
+     * handles posting new users to table
+     * @param {object} e
+     */
   const handleCreate = async (e) => {
     e.preventDefault();
 
@@ -65,7 +74,13 @@ function AdminUsers() {
   );
 }
 
+  // if state is changed to update
   if (view === "update") {
+
+    /**
+     * handles updating users
+     * @param {object} e
+     */
     const handleUpdate = async (e) => {
       e.preventDefault();
 
@@ -89,12 +104,12 @@ function AdminUsers() {
       }
 
       const response = await fetch(`api/users/${id}`, {
-        // kertoo mikä metodi
+        // this part tells which http request is used
         method: 'PATCH',
-        // tämä kertoo, että tuleva sisältö on jsonia
+        // this tells that the coming data is in json
         headers: { 'Content-type': 'application/json' },
-        // .stringify muuttaa js-olion merkkijonoksi
-        // se täytyy muuttaa merkkijonoksi, jotta bäkkäri osaa lukea sitä!
+        // this changes JS-object to string
+        // its needed to turn into string so backend can read it
         body: JSON.stringify({
           [field]: newField
         })
@@ -125,9 +140,16 @@ function AdminUsers() {
     )
   }
 
+  // state changed to "DELETE"
   if (view === "delete") {
+
+    /**
+     * handles deleting users
+     * @param {object} e
+     */
     const handleDelete = async (e) => {
-      // tämä estää sivun uudelleen lataamisen (state nollautuisi)
+      // this prevents page reloading
+      // so it also prevents state reloading
       e.preventDefault();
 
       if (!id) {
@@ -139,12 +161,10 @@ function AdminUsers() {
       }
 
       const response = await fetch(`/api/users/${id}`, {
-        // tämä kertoo bäkkäriin, että kyseessä on DELETE request
+        // this tells backend that its DELETE request
         method: 'DELETE',
       });
 
-      // tämä tarkistaa, että onnistuiko poistaminen vai ei
-      // ja ilmoittaa fronttiin siitä. setId() nollaa id:n staten
       if (response.status === 204) {
         alert(`User with id: ${id} was deleted successfully!`);
         setId("");

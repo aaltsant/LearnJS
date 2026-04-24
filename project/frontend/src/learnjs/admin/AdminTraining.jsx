@@ -18,6 +18,9 @@ function AdminTraining() {
   const [correct, setCorrect] = useState("");
   const [incorrect, setIncorrect] = useState("");
 
+  /**
+   * fetches all questions from database
+   */
   const fetchQuestions = async () => {
     const response = await fetch("/api/questions");
     const data = await response.json();
@@ -33,6 +36,11 @@ function AdminTraining() {
   }
 
   if (view === "create") {
+
+    /**
+     * handles posting new questions to table
+     * @param {object} e
+     */
     const handleCreate = async (e) => {
       e.preventDefault();
 
@@ -86,6 +94,11 @@ function AdminTraining() {
   }
 
   if (view === "update") {
+
+    /**
+     * handles updating users
+     * @param {object} e
+     */
     const handleUpdate = async (e) => {
       e.preventDefault();
 
@@ -110,12 +123,8 @@ function AdminTraining() {
       }
 
       const response = await fetch(`api/questions/${id}`, {
-        // kertoo mikä metodi
         method: 'PATCH',
-        // tämä kertoo, että tuleva sisältö on jsonia
         headers: { 'Content-type': 'application/json' },
-        // Tämä muuttaa js-olion merkkijonoksi
-        // se täytyy muuttaa merkkijonoksi, jotta bäkkäri osaa lukea sitä!
         body: JSON.stringify({
           [field]: newField
         })
@@ -149,8 +158,12 @@ function AdminTraining() {
 
 
   if (view === "delete") {
+
+    /**
+     * handles deleting questions
+     * @param {object} e
+     */
     const handleDelete = async (e) => {
-      // tämä estää sivun uudelleen lataamisen (state nollautuisi)
       e.preventDefault();
 
       if (!id) {
@@ -162,12 +175,9 @@ function AdminTraining() {
       }
 
       const response = await fetch(`/api/questions/${id}`, {
-        // tämä kertoo bäkkäriin, että kyseessä on DELETE request
         method: 'DELETE',
       });
 
-      // tämä tarkistaa, että onnistuiko poistaminen vai ei
-      // ja ilmoittaa fronttiin siitä. setId() nollaa id:n staten
       if (response.status === 204) {
         alert(`Question with id: ${id} was deleted successfully!`);
         setId("");
