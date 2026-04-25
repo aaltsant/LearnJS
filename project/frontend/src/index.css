@@ -28,6 +28,17 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  background-image: url('codetausta.jpg');
+    /* Polku kuvatiedostoosi */
+  background-size: cover;
+    /* Täyttää koko ruudun */
+  background-position: center;
+    /* Keskittää kuvan */
+  background-repeat: no-repeat;
+    /* Ei toista kuvaa */
+  background-attachment: fixed;
+    /* Kuva pysyy paikallaan rullatessa */
 }
 
 h1 {

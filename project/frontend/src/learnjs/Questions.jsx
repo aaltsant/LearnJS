@@ -30,7 +30,7 @@ function Questions() {
   };
 
   if (!currentQuestion) {
-    return <div>Loading...</div>;
+    return <div className={styles.header2}>Loading...</div>;
   }
 
   /**

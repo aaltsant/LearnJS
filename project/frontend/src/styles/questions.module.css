@@ -77,9 +77,17 @@
 .header2 {
   color: #c3d2e2;
   font-size: 35px;
-  padding: 15px;
+  padding: 10px;
   min-width: 400px;
   max-width: 600px;
+}
+
+.header1 {
+  color: #c3d2e2;
+  font-size: 45px;
+  padding: 10px;
+  min-width: 400px;
+  text-decoration: underline;
 }
 
 .para {
@@ -88,6 +96,18 @@
   font-size: 22px;
   max-width: 500px;
   margin: 0 auto;
+}
+
+.finalpara {
+  padding-bottom: 20px;
+  font-family: serif;
+  font-size: 22px;
+  margin: 0 auto;
+}
+
+.modepara {
+  font-family: serif;
+  font-size: 18px;
 }
 
 .code {
@@ -100,4 +120,29 @@
 
 .code:empty {
   display: none;
+}
+
+.namebox {
+  display: flex;
+  background-color: rgb(36, 32, 32);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 4px 4px rgb(19, 13, 13);
+}
+
+.startbox {
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 30px;
+}
+
+.input {
+  padding: 10px;
+  border: 1, 5px solid #ddd;
+  border-radius: 5px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3498db;
 }

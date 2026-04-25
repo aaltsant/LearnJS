@@ -7,7 +7,7 @@
 .header2 {
   color: #c3d2e2;
   font-size: 30px;
-  padding: 15px;
+  padding-bottom: 15px;
 }
 
 .header3 {
@@ -31,7 +31,8 @@
 
 .modecard {
   flex: 1;
-  min-height: 400px;
+  opacity: 95%;
+  min-height: 450px;
   background-color: #1e1e1e;
   padding: 30px;
   border-radius: 30px;
@@ -41,8 +42,20 @@
   box-shadow: 7px 7px rgb(20, 19, 19);
 }
 
+.about {
+  flex: 1;
+  opacity: 95%;
+  background-color: #1e1e1e;
+  padding-bottom: 15px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 7px 7px rgb(20, 19, 19);
+}
+
 .leaderboard {
   flex: 1;
+  opacity: 95%;
   min-height: 400px;
   background-color: #1e1e1e;
   padding: 30px;
