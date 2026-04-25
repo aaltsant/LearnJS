@@ -47,12 +47,14 @@ function Questions() {
 
   return (
     <div>
-      <div>
-        <h2>{currentQuestion.question}</h2>
-          <pre style={{ textAlign: 'left', margin: '20px auto', width: 'fit-content'}}>
-            <code>{currentQuestion.code_snippet}</code>
-          </pre>
-          <div>
+      <div className={styles.questionbackcard}>
+        <h2 className={styles.header2}>{currentQuestion.question}</h2>
+
+          <div className={styles.questioncard}>
+            <pre style={{ textAlign: 'left', margin: '20px auto', width: 'fit-content'}}>
+              <code className={styles.code}>{currentQuestion.code_snippet}</code>
+            </pre>
+
             <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_1)}>
               {currentQuestion.option_1}
             </button>
@@ -65,8 +67,9 @@ function Questions() {
               {currentQuestion.option_3}
             </button>
 
-            <p className={styles.p}>{feedback}</p>
+            <p className={styles.para}>{feedback}</p>
           </div>
+
           <button className={styles.nextButton} onClick={nextQuestion}>
             Next question
           </button>
