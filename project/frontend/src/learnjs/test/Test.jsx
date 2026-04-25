@@ -61,6 +61,7 @@ function Test({ username }) {
     }
   }
 
+  // changes state to the biggest streak
   if (streak > maxstreak) {
     setMaxstreak(streak);
   }
@@ -90,17 +91,17 @@ function Test({ username }) {
 
   // "loading screen"
   if (question.length === 0) {
-    return <div>Loading questions...</div>;
+    return <div className={styles.header2}>Loading questions...</div>;
   }
 
   if (currentIndex >= question.length) {
     return (
-      <div>
-        <h2>Test Over!</h2>
-        <p>Well done, {username}!</p>
-        <p>Your final score: {score}</p>
-        <p>Your highest streak: {maxstreak}</p>
-        <button onClick={saveResults}>Ready</button>
+      <div className={styles.questionbackcard}>
+        <h2 className={styles.header2}>Test Over!</h2>
+        <p className={styles.finalpara}>Well done, {username}!</p>
+        <p className={styles.finalpara}>Your final score: {score}</p>
+        <p className={styles.finalpara}>Your highest streak: {maxstreak}</p>
+        <button className={styles.button} onClick={saveResults}>Ready</button>
       </div>
     );
   }
@@ -113,17 +114,21 @@ function Test({ username }) {
   return (
     <div>
       <div>
-        <container>
+        <container className={styles.namebox}
+        style={{ textAlign: 'center', margin: '20px auto', width: 'fit-content', gap: "15px"}}>
           <p>Username: {username}</p>
           <p>question: {currentIndex + 1}/{question.length}</p>
           <p>Score: {score}</p> <p>Streak: {streak}</p>
         </container>
 
-        <h2>{currentQuestion.question}</h2>
-          <pre style={{ textAlign: 'left', maxWidth: '125px'}}>
-            <code>{currentQuestion.code_snippet}</code>
-          </pre>
-          <div>
+      <div className={styles.questionbackcard}>
+        <h2 className={styles.header2}>{currentQuestion.question}</h2>
+
+          <div className={styles.questioncard}>
+            <pre style={{ textAlign: 'left', margin: '20px auto', width: 'fit-content'}}>
+              <code className={styles.code}>{currentQuestion.code_snippet}</code>
+            </pre>
+
             <button className={styles.button} onClick={() => checkAnswer(currentQuestion.option_1)}
               disabled={hasAnswered}>
               {currentQuestion.option_1}
@@ -139,11 +144,13 @@ function Test({ username }) {
               {currentQuestion.option_3}
             </button>
 
-            <p>{feedback}</p>
+            <p className={styles.para}>{feedback}</p>
           </div>
+
           <button className={styles.nextButton} onClick={nextQuestion} disabled={!hasAnswered}>
             Next question
           </button>
+        </div>
       </div>
     </div>
   );
