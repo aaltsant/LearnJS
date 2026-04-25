@@ -4,6 +4,7 @@ let config = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 10,
+  ssl: { rejectUnauthorized: false },
 };
 
 module.exports = config;
