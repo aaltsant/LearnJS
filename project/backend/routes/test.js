@@ -27,13 +27,10 @@ testrouter.get("/", async (req, res) => {
     let results = await crudrepository.findAll("test");
     res.send(results);
   } catch (err) {
-    console.error("TIETOKANTA VIRHE:", err);
     // it goes here if db connection breaks
     // or there is syntax error in SQL asking
     res.status(500).json({
-      error: "Internal server error",
-      details: err.message
-    });
+      error: "Internal server error"});
   }
 });
 

@@ -26,11 +26,6 @@ app.use("/api/questions", router);
 app.use("/api/test", testrouter);
 app.use("/api/users", userrouter);
 
-// test for render
-app.get("/", (req, res) => {
-  res.send("backend is up and aiven connection works!");
-});
-
 /**
  * This method is made to see if application was shut down by the user
  * or some other problem
