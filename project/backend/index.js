@@ -47,7 +47,7 @@ const setupGracefulShutdown = (server) => {
 
 // Start the server and listen on the specified port
 // doesnt make connection automatically
-const server = app.listen(port, "0.0.0.0", () => {
+const server = app.listen(port, () => {
   console.info(`Example app listening on port ${port}`);
 });
 
