@@ -1,25 +1,30 @@
 .button {
+  font-size: large;
   background-color: #13064b;
   color: white;
   margin: 10px;
   padding: 12px;
   border-radius: 5px;
+  box-shadow: 4px 4px rgb(19, 6, 56);
 }
 
 .button:hover {
-  background-color: #03031b;
+  background-color: #05052e;
+  transform: translateY(-5px);
 }
 
 .nextButton {
-  background-color: #038ece;
+  background-color: #0354ce;
   color: white;
   margin: 20px;
   padding: 6px;
   border-radius: 5px;
+  box-shadow: 2px 2px rgb(50, 18, 138);
 }
 
 .nextButton:hover {
   background-color: #0724a5;
+  transform: translateY(-3px);
 }
 
 .navbar {
@@ -43,4 +48,56 @@
 
 .navLink:hover {
   color: #3498db;
+}
+
+.questioncard {
+  flex: 1;
+  min-height: 400px;
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 30px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.questionbackcard {
+  flex: 1;
+  min-height: 400px;
+  min-width: 400px;
+  background-color: #302d2d;
+  padding: 30px;
+  border-radius: 30px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 7px 7px rgb(20, 19, 19);
+}
+
+.header2 {
+  color: #c3d2e2;
+  font-size: 35px;
+  padding: 15px;
+  min-width: 400px;
+  max-width: 600px;
+}
+
+.para {
+  padding-top: 50px;
+  font-family: serif;
+  font-size: 22px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.code {
+  display: block;
+  background-color: rgb(14, 13, 13);
+  border-radius: 15px;
+  padding: 25px;
+  color: rgb(2, 167, 2);
+}
+
+.code:empty {
+  display: none;
 }
