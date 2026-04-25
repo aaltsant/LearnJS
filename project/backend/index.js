@@ -26,6 +26,11 @@ app.use("/api/questions", router);
 app.use("/api/test", testrouter);
 app.use("/api/users", userrouter);
 
+// test for render
+app.get("/", (req, res) => {
+  res.send("backend is up and aiven connection works!");
+});
+
 /**
  * This method is made to see if application was shut down by the user
  * or some other problem
@@ -47,7 +52,7 @@ const setupGracefulShutdown = (server) => {
 
 // Start the server and listen on the specified port
 // doesnt make connection automatically
-const server = app.listen(port, () => {
+const server = app.listen(port, "0.0.0.0", () => {
   console.info(`Example app listening on port ${port}`);
 });
 
