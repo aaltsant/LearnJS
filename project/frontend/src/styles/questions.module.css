@@ -38,6 +38,7 @@
 
 .navLink {
   color: #ecf0f1;
+  text-decoration: underline;
 }
 
 .navLink:hover {
