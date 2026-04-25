@@ -116,9 +116,10 @@ function Test({ username }) {
       <div>
         <container className={styles.namebox}
         style={{ textAlign: 'center', margin: '20px auto', width: 'fit-content', gap: "15px"}}>
-          <p>Username: {username}</p>
-          <p>question: {currentIndex + 1}/{question.length}</p>
-          <p>Score: {score}</p> <p>Streak: {streak}</p>
+          <p className={styles.modepara}>Username: {username}</p>
+          <p className={styles.modepara}>Question: {currentIndex + 1}/{question.length}</p>
+          <p className={styles.modepara}>Score: {score}</p>
+          <p className={styles.modepara}>Streak: {streak}</p>
         </container>
 
       <div className={styles.questionbackcard}>

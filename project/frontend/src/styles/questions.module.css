@@ -82,6 +82,14 @@
   max-width: 600px;
 }
 
+.header1 {
+  color: #c3d2e2;
+  font-size: 45px;
+  padding: 10px;
+  min-width: 400px;
+  text-decoration: underline;
+}
+
 .para {
   padding-top: 50px;
   font-family: serif;
@@ -95,6 +103,11 @@
   font-family: serif;
   font-size: 22px;
   margin: 0 auto;
+}
+
+.modepara {
+  font-family: serif;
+  font-size: 18px;
 }
 
 .code {
@@ -117,3 +130,19 @@
   box-shadow: 4px 4px rgb(19, 13, 13);
 }
 
+.startbox {
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 30px;
+}
+
+.input {
+  padding: 10px;
+  border: 1, 5px solid #ddd;
+  border-radius: 5px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3498db;
+}
