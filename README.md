@@ -41,9 +41,9 @@ could teach other people new things too! Also this project didnt feel like "work
 
 # Screencast
 
-Link here!
+[Link here!](https://youtu.be/XidGFvHjp14)
 
 # AI usage
 
-I used AI to sort some errors and also used it if I had some really specific questions. I always try to google things for so I wouldn't turn to AI too easily.
-I also used AI to generate me questions to my app. The AI I use is Google Gemini.
+I used AI to sort some errors and to explain me some difficult concepts. I also used it if I had some really specific questions. I always try to google things for so I wouldn't turn to AI too easily.
+I also used AI to generate me questions to my app. The AI I used is Google Gemini.
