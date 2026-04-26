@@ -70,9 +70,7 @@ function Test({ username }) {
 
   // method saveresults is for posting users who took the test
   // to the users table
-  const saveResults = async (e) => {
-    e.preventDefault();
-
+  const saveResults = async () => {
     const response = await fetch(`${DATABASE_URL}/api/users`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
