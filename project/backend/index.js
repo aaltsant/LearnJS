@@ -6,9 +6,13 @@ const testrouter = require("./routes/test");
 const userrouter = require("./routes/users");
 const { pool } = require("./database/crudrepository");
 // defines the port
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 3000;
 // creates an instance of express app
 const app = express();
+
+// needed for Render
+const cors = require('cors');
+app.use(cors());
 
 // This is much needed middleware, without it req.body wont work
 // It takes the json string and turns it into object and
