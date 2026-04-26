@@ -16,7 +16,9 @@ App features:
 
 # Deployed application
 
-Link here!
+Try the game out yourself!
+
+[Link here!](https://learnjs-l2qq.onrender.com/)
 
 # Motivation
 
