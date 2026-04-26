@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/questions.module.css';
 
+const DATABASE_URL = import.meta.env.VITE_API_URL || '';
+
 function Test({ username }) {
   const [question, setQuestion] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,7 +21,7 @@ function Test({ username }) {
   // this saves an array of questions to setQuestion state
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch("/api/test/rand");
+      const response = await fetch(`${DATABASE_URL}/api/test/rand`);
       const data = await response.json();
       setQuestion(data);
     };
@@ -69,7 +71,7 @@ function Test({ username }) {
   // method saveresults is for posting users who took the test
   // to the users table
   const saveResults = async () => {
-    const response = await fetch(`api/users`, {
+    const response = await fetch(`${DATABASE_URL}api/users`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({

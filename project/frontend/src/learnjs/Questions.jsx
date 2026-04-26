@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from '../styles/questions.module.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+const DATABASE_URL = import.meta.env.VITE_API_URL || '';
 
 function Questions() {
   const [question, setQuestion] = useState([]);
@@ -14,7 +14,7 @@ function Questions() {
    */
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch(`${API_BASE_URL}/api/questions/rand`);
+      const response = await fetch(`${DATABASE_URL}/api/questions/rand`);
       const data = await response.json();
       setQuestion(data);
     };

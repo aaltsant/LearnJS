@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import AdminChoosing from './AdminChoosing';
 
+const DATABASE_URL = import.meta.env.VITE_API_URL || '';
+
 function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [view, setView] = useState("users");
@@ -17,7 +19,7 @@ function AdminUsers() {
    * fetches all the users from database users table
    */
   const fetchUsers = async () => {
-    const response = await fetch("/api/users");
+    const response = await fetch(`${DATABASE_URL}/api/users`);
     const data = await response.json();
     setUsers(data);
   };
@@ -40,7 +42,7 @@ function AdminUsers() {
   const handleCreate = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(`api/users`, {
+    const response = await fetch(`${DATABASE_URL}/api/users`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
@@ -103,7 +105,7 @@ function AdminUsers() {
         return alert("Give new value!");
       }
 
-      const response = await fetch(`api/users/${id}`, {
+      const response = await fetch(`${DATABASE_URL}/api/users/${id}`, {
         // this part tells which http request is used
         method: 'PATCH',
         // this tells that the coming data is in json
@@ -160,7 +162,7 @@ function AdminUsers() {
         alert("ID is not valid integer!");
       }
 
-      const response = await fetch(`/api/users/${id}`, {
+      const response = await fetch(`${DATABASE_URL}/api/users/${id}`, {
         // this tells backend that its DELETE request
         method: 'DELETE',
       });

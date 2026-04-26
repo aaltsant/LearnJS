@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import AdminChoosing from './AdminChoosing';
 
+const DATABASE_URL = import.meta.env.VITE_API_URL || '';
+
 function AdminTraining() {
   const [questions, setQuestions] = useState([]);
   const [view, setView] = useState("Admintraining");
@@ -22,7 +24,7 @@ function AdminTraining() {
    * fetches all questions from database
    */
   const fetchQuestions = async () => {
-    const response = await fetch("/api/questions");
+    const response = await fetch(`${DATABASE_URL}/api/questions`);
     const data = await response.json();
     setQuestions(data);
   };
@@ -44,7 +46,7 @@ function AdminTraining() {
     const handleCreate = async (e) => {
       e.preventDefault();
 
-      const response = await fetch(`api/questions`, {
+      const response = await fetch(`${DATABASE_URL}/api/questions`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({
@@ -122,7 +124,7 @@ function AdminTraining() {
         return alert("Give new value!");
       }
 
-      const response = await fetch(`api/questions/${id}`, {
+      const response = await fetch(`${DATABASE_URL}/api/questions/${id}`, {
         method: 'PATCH',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({
@@ -174,7 +176,7 @@ function AdminTraining() {
         alert("ID is not valid integer!");
       }
 
-      const response = await fetch(`/api/questions/${id}`, {
+      const response = await fetch(`${DATABASE_URL}/api/questions/${id}`, {
         method: 'DELETE',
       });
 

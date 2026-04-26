@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from '../styles/home.module.css';
 
+const DATABASE_URL = import.meta.env.VITE_API_URL || '';
 
 function HomePage() {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ function HomePage() {
    */
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch("/api/users/top");
+      const response = await fetch(`${DATABASE_URL}/api/users/top`);
       const data = await response.json();
       setUsers(data);
     };
