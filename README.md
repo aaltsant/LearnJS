@@ -14,6 +14,14 @@ App features:
   - Admin page:
     - Page where you can Create, Read, Update and Delete easily from web.
 
+# Homepage
+
+![alt text](image.png)
+
+# Question card
+
+![alt text](image-1.png)
+
 # Deployed application
 
 Try the game out yourself!
