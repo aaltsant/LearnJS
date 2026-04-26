@@ -8,6 +8,7 @@ function NavBar() {
             <Link className={styles.navLink} to="/">Home</Link>
             <Link className={styles.navLink} to="/training">Training</Link>
             <Link className={styles.navLink} to="/test">Test</Link>
+            <Link className={styles.navLink} to="/admin">Admin</Link>
         </nav>
     );
 }
