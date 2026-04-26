@@ -1,14 +1,15 @@
 require("dotenv").config();
 // import the express module
 const express = require("express");
+// creates an instance of express app
+const app = express();
+
 const router = require("./routes/questions");
 const testrouter = require("./routes/test");
 const userrouter = require("./routes/users");
 const { pool } = require("./database/crudrepository");
 // defines the port
 const port = process.env.PORT || 3000;
-// creates an instance of express app
-const app = express();
 
 // needed for Render
 const cors = require('cors');
@@ -19,9 +20,6 @@ app.use(cors());
 // places it into req.body variable.
 app.use(express.json());
 
-// Old way
-// app.use("/", router)
-// this doenst work anymore as we need more than one router
 
 // now when the routers automatically use /api/table_name
 // you gotta just call /:myId in routes
