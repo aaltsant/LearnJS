@@ -6,7 +6,7 @@ const testrouter = require("./routes/test");
 const userrouter = require("./routes/users");
 const { pool } = require("./database/crudrepository");
 // defines the port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 // creates an instance of express app
 const app = express();
 
@@ -47,7 +47,7 @@ const setupGracefulShutdown = (server) => {
 
 // Start the server and listen on the specified port
 // doesnt make connection automatically
-const server = app.listen(port, () => {
+const server = app.listen(port, "0.0.0.0", () => {
   console.info(`Example app listening on port ${port}`);
 });
 
