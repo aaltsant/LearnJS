@@ -28,6 +28,17 @@ app.use("/api/questions", router);
 app.use("/api/test", testrouter);
 app.use("/api/users", userrouter);
 
+// Small backend call to keep the web database alive
+app.get("/api/health", async (req, res) => {
+  try {
+    await pool.query("SELECT 1;");
+    res.status(200).send("OK");
+  } catch (err) {
+    console.error("Keep-alive database query failed:", err);
+    res.status(500).send("Database connection error");
+  }
+});
+
 /**
  * This method is made to see if application was shut down by the user
  * or some other problem

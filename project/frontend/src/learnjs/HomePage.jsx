@@ -27,7 +27,7 @@ function HomePage() {
         <h2 className={styles.header2}>About this project:</h2>
         <p className={styles.para}>
           LearnJS! is my first ever fullstack project. I had an idea about making this project for a long time.
-          I made this as my fullstack course project because I wanted to make project that will taught me new things.
+          I made this as my fullstack course project because I wanted to make project that will teach me new things.
           Whether you are beginner or an advanced coder you can learn new things from here, try it out to sharpen your skills and get your name up on the leaderboard!
         </p>
       </div>
