@@ -2,9 +2,8 @@ name: Keep App and DB Alive
 
 on:
   schedule:
-    # Ajetaan joka 14. minuutti
-    - cron: '*/14 * * * *'
-  workflow_dispatch: # Tämä mahdollistaa testiajon napista suoraan GitHubista
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 jobs:
   ping:
