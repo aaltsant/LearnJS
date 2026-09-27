@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Ping health endpoint
         run: |
-          curl -sS --fail "https://learnjs-l2qq.onrender.com/api/health" || echo "Ping epäonnistui"
+          curl -sS --fail "https://learnjs-ttop.onrender.com/api/questions/rand" || echo "Ping epäonnistui"
